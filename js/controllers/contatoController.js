@@ -1,11 +1,11 @@
-﻿var appController = mdLista.name + "Controller";
+﻿var appController = app.name + "Controller";
 /*
     *  registra o controller
     *  A função [modulo].controller recebe o nome do controller que esta sendo criado e é chamado uma função de callback 
     *  que recebe um argumento interno chamado $scope o qual representa o escopo da view onde o controller está sendo definido pela diretiva ng-controller.
     *  A partir do momento em quem esteja o contexto da função, é possivel definir as ações que serão interagidas com a view
 */
-mdLista.controller(appController, function ($scope) {
+app.controller(appController, function ($scope) {
     console.info('Controller [' + appController + '] registrado para o view ! ');
     RegistraController($scope)
 });
@@ -39,6 +39,6 @@ function adicionar(tarefa) {
     //Captura os valores do view
     view.tarefas.push(tarefa)
     view.itemInserido = 1
-    view.mensagem = 'Tarefa (' + tarefa.nome + ') inserido com sucesso !';
+    view.mensagem = 'Tarefa (' + task.nome + ') inserido com sucesso !';
     delete (view.tarefa);
 };

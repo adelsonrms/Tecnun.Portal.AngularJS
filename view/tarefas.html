@@ -1,0 +1,119 @@
+﻿<div class="login-panel panel panel-default">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-xs-3">
+                <img class="pull-left" src="img/logo.png" style="height: 27px">
+            </div>
+            <div class="col-xs-9">
+                <p class="titulo">{{app}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="container-fluid">
+            <form class="form-horizontal" action="">
+                <fieldset>
+                    <!-- Area do Cadastro -->
+                    <div class="container-fluid">
+                        <div class="row borda">
+                            <div class="col-xs-3">
+                                <div class="form-group">
+                                    <label for="hr_inicio">Data : </label>
+                                    <input name="dt_Data" type="text" ng-model="task.date" placeholder="Data"
+                                           class="texto_input data_placeholder" />
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="form-group">
+                                    <label for="hr_inicio">Inicio : </label>
+                                    <input name="hr_inicio" type="text" ng-model="task.start" placeholder="Hora"
+                                           class="texto_input hora_placeholder" />
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="form-group">
+                                    <label for="hr_fim">Fim : </label>
+                                    <input name="hr_fim" type="text" ng-model="task.end" placeholder="HH:MM"
+                                           class="texto_input hora_placeholder" />
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="form-group">
+                                    <label for="hr_total">Total : </label>
+                                    <input name="hr_total" type="text" placeholder="HH:MM" disabled class="disabled texto_input"
+                                           value="{{task.end - task.start}}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label for="cboProjeto">Projeto : </label>
+                                    <select style="width: 95%" name="cboProjeto" class="Combo" ng-model="task.projeto" ng-options="projeto.nome group by projeto.tipo for projeto in projetos">
+                                        <option value="">Selecionar um Tipo de Atividade</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label for="cboAtividade">Tipo de Atividade : </label>
+                                    <select name="cboAtividade" class="Combo" ng-model="task.projeto" ng-options="projeto.nome group by projeto.tipo for projeto in projetos">
+                                        <option value="">Selecionar um Tipo de Atividade</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <label for="txt_descricao">Total : </label>
+                                    <textarea class="form-control" name="txt_descricao" rows="2" cols="30"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <button class="btn btn-primary btn-block" ng-click="adicionarTarefa(tarefa)"
+                        ng-disabled="!task.date || !task.start || !task.end">
+                    Salvar Tarefa
+                </button>
+            </form>
+            <!-- Area da Tabela -->
+            <div class="alert alert-success" ng-show="tarefaInserido == 1">{{mensagem}}</div>
+            <br />
+            <p>Relação das Atividades Cadastrados</p>
+            <table style="width: 100%" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Inicio</th>
+                        <th>Fim</th>
+                        <th>Total</th>
+                        <th>Projeto</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="tarefa in tarefas">
+                        <td>{{task.date}}</td>
+                        <td>{{task.start}}</td>
+                        <td>{{task.end}}</td>
+                        <td>{{task.total}}</td>
+                        <td>{{task.projeto.nome}}</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3" style="text-align: left">Total de tarefas : {{tarefas.length}}</td>
+                    </tr>
+                </tfoot>
+            </table>
+            <button class="btn btn-danger btn-block" ng-click="excluirtarefa(tarefa)" ng-disabled="!task.nome || !task.telefone">
+                Excluir
+            </button>
+        </div>
+        <div class="panel-footer">
+            <p>Todos os direitos reservados</p>
+        </div>
+    </div>
+</div>
